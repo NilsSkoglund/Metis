@@ -25,6 +25,19 @@ class CustomUser(AbstractUser):
     hsaid = models.CharField(max_length=4, unique=True, blank=True, null=True)
     username = models.CharField(max_length=150, unique=True, blank=True, null=True)
 
+    TITLE_CHOICES = [
+        ("1", "Chief Medical Officer"),
+        ("2", "Senior Consultant"),
+        ("3", "Specialist Physician"),
+        ("4", "Specialist Registrar"),
+        ("5", "Licensed Physician"),
+        ("6", "Internship Doctor"),
+        ("7", "Junior Doctor Before Internship"),
+        ("8", "Medical Student"),
+        ("0", "Undefined")
+    ]
+
+    title = models.CharField(max_length=2, choices=TITLE_CHOICES, default="0")
     objects = CustomUserManager()
 
     USERNAME_FIELD = "email"
