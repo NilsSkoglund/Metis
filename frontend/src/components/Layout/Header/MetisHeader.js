@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {AppBar, Toolbar, IconButton, Typography, styled} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 const drawerWidth = 240
@@ -22,6 +23,8 @@ const CustomAppBar = styled(AppBar)(({ theme, drawerOpen }) => ({
                 duration: theme.transitions.duration.leavingScreen
             }),
         }),
+        minHeight: '64px',
+        marginBottom: '64px',
     }));
 
 const pages = [
@@ -42,6 +45,24 @@ const pages = [
         path: "/workups"
     }
 ]
+const userSettings = [
+    {
+        name: "Profile",
+        path: "/profile"
+    },
+    {
+        name: "Settings",
+        path: "/settings"
+    },
+    {
+        name: "Logout",
+        path: "/logout"
+    },
+    {
+        name: "Login",
+        path: "/login"
+    }
+]
 
 
 export default function MetisHeader({ handleDrawerOpen, drawerOpen }) {
@@ -49,54 +70,71 @@ export default function MetisHeader({ handleDrawerOpen, drawerOpen }) {
     const navigate = useNavigate();
 
     return (
-        <CustomAppBar position={"fixed"} drawerOpen={drawerOpen}>
-            <Container maxWidth={"xxl"}>
-                <Toolbar disableGutters>
-                    <IconButton
-                        color={'inherit'}
-                        onClick={handleDrawerOpen}
-                        edge={"start"}
-                        sx={{
-                            marginRight: 5,
-                            opacity: drawerOpen ? 0 : 1,
-                            transition: 'opacity 0.3s ease'}}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Box sx={{flexGrow: 1}}>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            href="home"
+        <>
+            <CustomAppBar position={"fixed"} drawerOpen={drawerOpen}>
+                <Container>
+                    <Toolbar disableGutters>
+                        <IconButton
+                            color={'inherit'}
+                            onClick={handleDrawerOpen}
+                            edge={"start"}
                             sx={{
-                              fontFamily: 'monospace',
-                              fontWeight: 700,
-                              letterSpacing: '.3rem',
-                              color: 'inherit',
-                              textDecoration: 'none',
-                            }}
+                                marginRight: 5,
+                                opacity: drawerOpen ? 0 : 1,
+                                transition: 'opacity 0.3s ease'}}
                         >
-                            METIS
-                        </Typography>
-                    </Box>
-                    <Box sx={{ flexGrow: 1, marginLeft: '-155px', display: {xs: 'flex'}}}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page.name}
-                                onClick={() => navigate(page.path)}
-                                sx={{ my: 2, mx:2, color: 'white', display: 'block' }}
+                            <MenuIcon />
+                        </IconButton>
+                        <Box sx={{
+                            flexGrow: 1,
+                            display: 'flex',
+                            justifyContent: { xs: 'center', md: 'flex-start' }
+                        }}>
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="a"
+                                href="home"
+                                sx={{
+                                    fontFamily: 'monospace',
+                                    fontWeight: 700,
+                                    letterSpacing: '.3rem',
+                                    color: 'inherit',
+                                    textDecoration: 'none',
+                                }}
                             >
-                                {page.name}
-                            </Button>
-                        ))}
-                    </Box>
-                </Toolbar>
+                                METIS
+                            </Typography>
+                        </Box>
+                        <Box sx={{ flexGrow: 1, marginLeft: '-155px', display: {xs: 'none', md: 'flex'}}}>
+                            {pages.map((page) => (
+                                <Button
+                                    key={page.name}
+                                    onClick={() => navigate(page.path)}
+                                    sx={{ my: 2, mx:2, color: 'white', display: 'block' }}
+                                >
+                                    {page.name}
+                                </Button>
+                            ))}
+                        </Box>
+                        
+                    </Toolbar>
+                </Container>
+            </CustomAppBar>
+            <Box
+                sx={{
+                    display: {xs: 'flex', md: 'none'},
+                    justifyContent: 'center',
+                    position: 'absolute',
+                    top: '64px',
+                    width: '100%',
+                }}
+            >
+                <IconButton>
+                    <ExpandMoreIcon />
+                </IconButton>
+            </Box>
 
-
-            </Container>
-
-
-        </CustomAppBar>
+        </>
     )
 }
