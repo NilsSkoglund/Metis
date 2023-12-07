@@ -22,8 +22,9 @@ export default function Layout({ children }) {
             <Box component="main" sx={{
                 flexGrow: 1,
                 p: 10,
-                marginLeft: drawerOpen ? 0 : `-240px`, // Add this line
-                transition: 'margin 0.3s ease' // And this one for a smooth transition
+                marginTop: `16px`,
+                marginLeft: drawerOpen ? 0 : `-240px`,
+                transition: 'margin 0.3s ease'
             }}>
                 {children}
             </Box>
