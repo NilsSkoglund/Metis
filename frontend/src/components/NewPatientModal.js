@@ -37,7 +37,7 @@ function NewPatientModal({ open, onClose }) {
         const patientData = {
             first_name: firstName,
             last_name: lastName,
-            temporary_age: age,
+            _age: age,
             gender: gender,
         };
 
