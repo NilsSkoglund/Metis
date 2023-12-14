@@ -1,7 +1,10 @@
 import React from "react";
 import { Card, CardActions, CardContent, Typography, Button } from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 export default function PatientCard({ patient, onRemove }) {
+    const navigate = useNavigate()
+
     return (
         <Card sx={{ maxWidth: 275, margin: 2 }}>
             <CardContent>
@@ -13,7 +16,7 @@ export default function PatientCard({ patient, onRemove }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Go to patient</Button>
+                <Button size="small" onClick={() => navigate(`/patients/${patient.id}`)}>Go to patient</Button>
                 <Button size="small" onClick={() => onRemove(patient.id)}>Remove</Button>
             </CardActions>
         </Card>
