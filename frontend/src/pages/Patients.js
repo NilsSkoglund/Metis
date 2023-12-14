@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import NewPatientModal from "../components/NewPatientModal";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import PatientCard from "../components/PatientCard";
 
 export default function Patients() {
