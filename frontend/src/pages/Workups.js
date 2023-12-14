@@ -1,9 +1,4 @@
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import NewPatientModal from "../components/NewPatientModal";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import {Card, CardActions, CardContent, Typography} from "@mui/material";
+import React from "react";
 import WorkupCard from "../components/WorkupCard";
 
 export default function Workups() {
@@ -22,13 +17,14 @@ export default function Workups() {
     ]
 
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-            {workups.map((workup) => (
-                <WorkupCard
-                    workup={workup}
-                />
-            ))}
-        </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+                    {workups.map((workup) => (
+                        <WorkupCard
+                            key={workup.title}
+                            workup={workup}
+                        />
+                    ))}
+                </div>
 
     )
 }
