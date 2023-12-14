@@ -4,6 +4,7 @@ import React from 'react'
 import Patients from "./pages/Patients";
 import Workups from "./pages/Workups";
 import Layout from "./components/Layout";
+import WdxPulmonaryEmbolism from "./pages/workups/WdxPulmonaryEmbolism";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                         <Route path={"/signup"} element={<Patients />}></Route>
                         <Route path={"/patients"} element={<Patients />}></Route>
                         <Route path={"/workups"} element={<Workups />}></Route>
+                        <Route path="workups/pulmonary_embolism" element={<WdxPulmonaryEmbolism />} />
                     </Routes>
                 </Layout>
             </Router>
