@@ -10,25 +10,27 @@ import {useNavigate} from "react-router-dom";
 export default function WorkupCard({ workup }) {
     const navigate = useNavigate();
     return (
-        <Card sx={{ minWidth: 275, maxWidth: 275, minHeight: 300, margin: 2 }}>
-            <CardMedia
-                component="img"
-                alt="green iguana"
-                height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {workup.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {workup.description}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small" onClick={navigate(workup.path)}>View</Button>
-                <Button size="small">Start</Button>
-            </CardActions>
-        </Card>
+        <React.Fragment>
+            <Card sx={{ minWidth: 275, maxWidth: 275, minHeight: 300, margin: 2 }}>
+                <CardMedia
+                    component="img"
+                    height="140"
+                    image={`/static/images/workups${workup.path}.png`}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        {workup.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {workup.description}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small" onClick={() => navigate(`.${workup.path}`)}>View</Button>
+                    <Button size="small">Start</Button>
+                </CardActions>
+            </Card>
+        </React.Fragment>
+
   );
 }
